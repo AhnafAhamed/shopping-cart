@@ -31,16 +31,18 @@
       >
         Empty Cart
       </button>
-
       <product-tabs :reviews="reviews"></product-tabs>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from "Vue"
-
+import ProductTabs from "./ProductTabs.vue"
+import Detail from "./Detail.vue"
+import { eventBus } from "../utils/eventBus"
+console.log(eventBus)
 export default {
+  components: { ProductTabs, Detail },
   name: "Product",
   props: {
     premium: {
@@ -115,7 +117,6 @@ export default {
     },
   },
   mounted() {
-    var eventBus = new Vue()
     eventBus.$on("review-submitted", (productReview) => {
       this.reviews.push(productReview)
     })
